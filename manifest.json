@@ -1,0 +1,16 @@
+{
+  "name": "Paint GitHub",
+  "short_name": "paint-github",
+  "version": "0.3.0",
+  "manifest_version": 2,
+  "description": "This adds canvas for drawing a picture and inserting them in GitHub comment boxes.",
+  "homepage_url": "http://github.com/muan/paint-github",
+  "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
+  "content_scripts": [
+    {
+      "matches": ["https://github.com/*"],
+      "css": ["index.css"],
+      "js": ["custom-elements-polyfill.js", "paint-canvas-element.js", "index.js"]
+    }
+  ]
+}

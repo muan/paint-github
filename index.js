@@ -76,7 +76,7 @@ for (const tabContainer of document.querySelectorAll('tab-container.js-previewab
     if (!paintCanvas.getAttribute('width')) {
       if (!defaultWidth) defaultWidth = paintCanvas.parentElement.clientWidth - 24
       paintCanvas.setAttribute('width', defaultWidth)
-      widthInputLabel.querySelector('input').value = paintCanvas.width
+      widthInputLabel.querySelector('input').defaultValue = paintCanvas.width
     }
     if (!paintCanvas.getAttribute('height')) paintCanvas.setAttribute('height', defaultHeight)
   })
@@ -90,7 +90,7 @@ function createInputLabel(paintCanvas, name, type, value) {
   input.type = type
   input.classList.add('paint-input')
   input.addEventListener('change', () => paintCanvas[name] = input.value)
-  input.value = value
+  input.value = input.defaultValue = value
   return label
 }
 

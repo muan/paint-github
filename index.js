@@ -1,3 +1,5 @@
+import {changeDpiBlob} from './node_modules/changedpi/src/index.js'
+
 for (const tabContainer of document.querySelectorAll('tab-container.js-previewable-comment-form')) {
   const tabList = tabContainer.querySelector('[role=tablist]')
   const tabPanels = tabContainer.querySelectorAll('[role=tabpanel]')
@@ -24,8 +26,9 @@ for (const tabContainer of document.querySelectorAll('tab-container.js-previewab
 
   uploadButton.addEventListener('click', () => {
     const attachment = tabContainer.querySelector('file-attachment')
-    paintCanvas.canvas.toBlob(blob => {
-      const file = new File([blob], 'paint.png', {type: 'image/png'})
+    paintCanvas.canvas.toBlob(async function(blob) {
+      const newBlob = await changeDpiBlob(blob, window.devicePixelRatio * 72)
+      const file = new File([newBlob], 'paint.png', {type: 'image/png'})
       const dataTransfer = new DataTransfer()
       dataTransfer.items.add(file)
       writeTab.click()

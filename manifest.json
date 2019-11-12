@@ -10,7 +10,12 @@
     {
       "matches": ["https://github.com/*"],
       "css": ["index.css"],
-      "js": ["custom-elements-polyfill.js", "paint-canvas-element.js", "index.js"]
+      "js": ["inject.js"]
     }
+  ],
+  "web_accessible_resources": [
+     "index.js",
+     "node_modules/changedpi/src/index.js",
+     "paint-canvas-element.js"
   ]
 }

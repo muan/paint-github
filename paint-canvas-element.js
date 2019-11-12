@@ -188,7 +188,7 @@ function redraw(element, toStep) {
 function startDrawing(event) {
   if (event.touches && event.touches.length > 1) return
   if (event.touches) event.preventDefault()
-  state = states.get(event.currentTarget)
+  const state = states.get(event.currentTarget)
   state.drawing = true
   event.currentTarget.isDrawing = true
 }

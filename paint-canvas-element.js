@@ -1,4 +1,3 @@
-window.customElements.forcePolyfill = true
 const states = new WeakMap()
 const histories = new WeakMap()
 

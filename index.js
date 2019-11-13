@@ -55,13 +55,18 @@ for (const tabContainer of document.querySelectorAll('tab-container.js-previewab
 
   imageFile.addEventListener('change', event => {
     createImageBitmap(imageFile.files[0]).then(bitmap => {
-      const context = paintCanvas.canvas.getContext('2d')
       const height = bitmap.height * (defaultWidth/bitmap.width)
       paintCanvas.width = defaultWidth
       paintCanvas.height = height
       widthInputLabel.querySelector('input').value = paintCanvas.width
       heightInputLabel.querySelector('input').value = paintCanvas.height
-      context.drawImage(bitmap, 0, 0, paintCanvas.width, paintCanvas.height)
+
+      function drawImage(el) {
+        const context = el.canvas.getContext('2d')
+        context.drawImage(bitmap, 0, 0, el.width, el.height)
+      }
+      drawImage(paintCanvas)
+      paintCanvas.insertStep(drawImage)
     })
   })
 

@@ -81,6 +81,13 @@ class PaintCanvasElement extends HTMLElement {
     value ? this.setAttribute('drawing', '') : this.removeAttribute('drawing')
   }
 
+  insertStep(step) {
+    const history = histories.get(this)
+    const {currentStep} = history
+    history.log.push(step)
+    history.currentStep = history.log.length
+  }
+
   undo() {
     const history = histories.get(this)
     const {currentStep} = history
@@ -164,6 +171,10 @@ function redraw(element, toStep) {
     start = 0
   }
   for (const entry of log.slice(start, destination)) {
+    if (entry instanceof Function) {
+      entry(element)
+      continue
+    }
     for (const [from, to, color, size] of entry) {
       context.lineJoin = 'round'
       context.lineCap = 'round'
@@ -205,8 +216,7 @@ function stopDrawing(event) {
     if (history.currentStep !== history.log.length) {
       history.log = history.log.slice(0, history.currentStep)
     }
-    history.log.push(history.currentEntry)
-    history.currentStep = history.log.length
+    event.currentTarget.insertStep(history.currentEntry)
     event.currentTarget.dispatchEvent(new CustomEvent('paint-canvas:history-change', {
       bubbles: true,
       detail: history

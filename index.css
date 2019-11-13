@@ -14,7 +14,6 @@ paint-canvas {
   display: flex;
   margin: 8px 12px 4px;
   align-items: center;
-  font-family: monospace;
   font-size: 12px;
   justify-content: space-between;
 }
@@ -27,26 +26,19 @@ paint-canvas {
 .paint-options label {
   display: flex;
   align-items: center;
-  margin-left: 8px;
+  margin-right: 8px;
 }
 
 .paint-input {
-  padding: 1px 6px;
+  padding: 1px 0 1px 6px;
   font-size: 12px;
   margin-left: 4px;
-  font-family: monospace;
-  width: 40px;
 }
+
+.paint-input[type="color"] { width: 30px; padding: 0; }
+.paint-input[type="number"] { width: 50px; }
 
 .paint-button {
-  border: 1px solid #000;
-  background: #fff;
-  padding: 3px 8px;
   font-size: 11px;
   font-weight: normal;
-}
-
-.paint-button.selected {
-  background: #000;
-  color: #fff;
 }

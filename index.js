@@ -20,7 +20,7 @@ for (const tabContainer of document.querySelectorAll('tab-container.js-previewab
 
   const writeTab = tabContainer.querySelector('.js-write-tab')
   const uploadButton = document.createElement('button')
-  uploadButton.classList.add('paint-button')
+  uploadButton.classList.add('paint-button', 'btn', 'btn-sm')
   uploadButton.textContent = 'Upload'
   uploadButton.type = 'button'
 
@@ -46,9 +46,9 @@ for (const tabContainer of document.querySelectorAll('tab-container.js-previewab
   const heightInputLabel = createInputLabel(paintCanvas, 'height', 'number', defaultHeight)
 
   const imageLabel = document.createElement('label')
-  imageLabel.classList.add('paint-button')
+  imageLabel.classList.add('paint-button', 'btn', 'btn-sm', 'btn-outline')
   const imageFile = document.createElement('input')
-  imageLabel.textContent = 'Insert image'
+  imageLabel.textContent = 'Add image'
   imageLabel.append(imageFile)
   imageFile.type = 'file'
   imageFile.hidden = true
@@ -70,14 +70,14 @@ for (const tabContainer of document.querySelectorAll('tab-container.js-previewab
     })
   })
 
+  options.append(imageLabel)
   options.append(createInputLabel(paintCanvas, 'color', 'color', '#666666'))
   options.append(createInputLabel(paintCanvas, 'bgcolor', 'color', '#f0f0f0'))
   options.append(createInputLabel(paintCanvas, 'size', 'number', 3))
   options.append(widthInputLabel)
   options.append(heightInputLabel)
-  tools.append(uploadButton)
-  tools.append(imageLabel)
   tools.append(options)
+  tools.append(uploadButton)
   newPanel.prepend(tools)
 
   tabContainer.addEventListener('tab-container-changed', event => {
